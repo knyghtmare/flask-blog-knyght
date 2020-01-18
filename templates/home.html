@@ -5,5 +5,13 @@ Knyght Blog - Home
 {% endblock %}
 
 {% block content %}
-<p>This is the home page!</p>
+    <p>This is the home page!</p>
+
+    {% for post in posts %}
+
+        <p><h3>{{ post.post_title }}</h3></p>
+        <p>Posted by: {{ post.post_author }} on {{ post.post_date }}</p>
+        <p>{{ post.post_content }}</p>
+        
+    {% endfor %}
 {% endblock %}
