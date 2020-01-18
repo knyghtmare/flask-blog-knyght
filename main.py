@@ -1,8 +1,18 @@
-from flask import Flask, render_template
+from flask import (
+    Flask,
+    render_template,
+    url_for,
+    flash,
+    redirect
+    )
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
 
-# dummy data
 
+app.config['SECRET_KEY'] = "Y4jgCOSNxXmZWGIm4rzf1FRCbQD29ogL"
+
+
+# dummy data
 posts = [
 {
     'post_title'  : "Richard Madden",
@@ -15,6 +25,24 @@ posts = [
     'post_author' : 'Knyght',
     'post_content': 'Guild Wars 2 was an epic game, but it sort of sucks now.',
     'post_date'   : 'January 3, 2020'
+},
+{
+    'post_title'  : "Naisa",
+    'post_author' : 'Omer Fahim',
+    'post_content': 'She is the love of my life.',
+    'post_date'   : 'January 19, 2020'
+},
+{
+    'post_title'  : "Jason Momoa",
+    'post_author' : 'Mahnaz Rashid',
+    'post_content': "Jason Momoa is the world's most perfect man.",
+    'post_date'   : 'January 10, 2020'
+},
+{
+    'post_title'  : "Cyberpunk 2077",
+    'post_author' : 'Ishtyman',
+    'post_content': "Gotta play Cyberpunk 2077 when it comes out.",
+    'post_date'   : 'January 19, 2020'
 }
 ]
 
@@ -27,6 +55,21 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f"Account created for {form.username.data}!", 'success')
+        return redirect( url_for('home') )
+    return render_template('register.html', form=form)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
 
 if __name__ == "__main__":
