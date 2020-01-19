@@ -1,16 +1,7 @@
-from flask import (
-    Flask,
-    render_template,
-    url_for,
-    flash,
-    redirect
-    )
-from forms import RegistrationForm, LoginForm
-app = Flask(__name__)
-
-
-app.config['SECRET_KEY'] = "Y4jgCOSNxXmZWGIm4rzf1FRCbQD29ogL"
-
+from flask import render_template, url_for, flash, redirect
+from knyghtblog import app
+from knyghtblog.forms import RegistrationForm, LoginForm
+from knyghtblog.models import User, Post
 
 # dummy data
 posts = [
@@ -46,8 +37,8 @@ posts = [
 }
 ]
 
-
 @app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html', posts=posts)
 
@@ -70,7 +61,3 @@ def register():
 def login():
     form = LoginForm()
     return render_template('login.html', form=form)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
