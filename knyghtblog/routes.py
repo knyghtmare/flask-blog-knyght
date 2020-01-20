@@ -22,18 +22,6 @@ posts = [
     'post_date'   : 'January 3, 2020'
 },
 {
-    'post_title'  : "Naisa",
-    'post_author' : 'Omer Fahim',
-    'post_content': 'She is the love of my life.',
-    'post_date'   : 'January 19, 2020'
-},
-{
-    'post_title'  : "Jason Momoa",
-    'post_author' : 'Mahnaz Rashid',
-    'post_content': "Jason Momoa is the world's most perfect man.",
-    'post_date'   : 'January 10, 2020'
-},
-{
     'post_title'  : "Cyberpunk 2077",
     'post_author' : 'Ishtyman',
     'post_content': "Gotta play Cyberpunk 2077 when it comes out.",
@@ -104,7 +92,7 @@ def save_picture(form_picture):
     return picture_fn
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -116,10 +104,9 @@ def account():
         current_user.email = form.email.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
-        return redirect(url_for('account'))
+        return redirect( url_for('account') )
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename="profile-pictures/" + current_user.image_file)
-    return render_template( 'account.html', 
-                            image_file=image_file, form=form)
+    return render_template( 'account.html', image_file=image_file, form=form)
