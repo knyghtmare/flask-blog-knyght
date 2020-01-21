@@ -1,0 +1,5 @@
+knyghtblog/__pycache__/
+knyghtblog/errors/__pycache__/
+knyghtblog/users/__pycache__/
+knyghtblog/posts/__pycache__/
+knyghtblog/main/__pycache__/
