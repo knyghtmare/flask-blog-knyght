@@ -7,29 +7,6 @@ from knyghtblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Pos
 from knyghtblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-# dummy data
-'''
-posts = [
-{
-    'post_title'  : "Richard Madden",
-    'post_author' : 'Faria Tahsin',
-    'post_content': 'I love Richard Madden.',
-    'post_date'   : 'December 25th, 2019'
-},
-{
-    'post_title'  : "Guild Wars 2",
-    'post_author' : 'Knyght',
-    'post_content': 'Guild Wars 2 was an epic game, but it sort of sucks now.',
-    'post_date'   : 'January 3, 2020'
-},
-{
-    'post_title'  : "Cyberpunk 2077",
-    'post_author' : 'Ishtyman',
-    'post_content': "Gotta play Cyberpunk 2077 when it comes out.",
-    'post_date'   : 'January 19, 2020'
-}
-]
-'''
 
 @app.route('/')
 @app.route('/home')
